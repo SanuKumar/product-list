@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import ProductList from './ProductList';
+import axios from 'axios';
 
-function App() {
+const App = () => {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+  const fetchProduct = async () => {
+    let { data, status } = await axios.get(
+      `https://run.mocky.io/v3/05e9651d-528e-4d7c-a60b-bae8f09684c6`
+    );
+    if (status === 200) {
+      setProductList(data.products);
+    } else {
+      setProductList([]);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className='center-title'>Welcome To Product</div>
+      <div>
+        <ProductList productList={productList} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
