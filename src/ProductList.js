@@ -5,7 +5,7 @@ const ProductList = ({ productList, loading }) => {
   const [show, setShow] = useState(false);
 
   return (
-    <div id='infinite-list'>
+    <div>
       <div style={{ position: 'fixed', right: '0px', zIndex: '999' }}>
         <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
           <Toast.Header>
