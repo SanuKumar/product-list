@@ -55,7 +55,7 @@ const ProductList = ({ productList, loading }) => {
             );
           })}
       </div>
-      {!loading ? (
+      {loading ? (
         <div className='spinner-wrapper'>
           Loading product list...
           <Spinner animation='border' />

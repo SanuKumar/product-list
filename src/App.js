@@ -9,6 +9,7 @@ const App = () => {
 
   useEffect(() => {
     fetchProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchProduct = async () => {
@@ -20,11 +21,13 @@ const App = () => {
       setLoading(false);
       setProductList(productList.concat(data.products));
     } else {
+      setLoading(false);
       setProductList([]);
     }
   };
 
   // call the api when the scroll end the page end
+  useEffect(() => {});
   window.onscroll = function () {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
@@ -33,6 +36,10 @@ const App = () => {
       fetchProduct();
     }
   };
+
+  console.log('offsetHeightd', document.documentElement.offsetHeight);
+  console.log('innerHeight', window.innerHeight);
+  console.log('scrollTop', document.documentElement.scrollTop);
 
   return (
     <div>
