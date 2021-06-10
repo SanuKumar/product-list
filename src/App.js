@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const [productList, setProductList] = useState([]);
