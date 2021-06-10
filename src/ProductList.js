@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Toast, Button, Spinner } from 'react-bootstrap';
 
-const ProductList = ({ productList }) => {
+const ProductList = ({ productList, loading }) => {
   const [show, setShow] = useState(false);
 
   return (
-    <div>
+    <div id='infinite-list'>
       <div style={{ position: 'fixed', right: '0px', zIndex: '999' }}>
         <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
           <Toast.Header>
@@ -22,7 +22,7 @@ const ProductList = ({ productList }) => {
         </Toast>
       </div>
       <div className='card-wrapper'>
-        {productList.length ? (
+        {productList &&
           productList.map((p) => {
             return (
               <div
@@ -53,14 +53,16 @@ const ProductList = ({ productList }) => {
                 </Card>
               </div>
             );
-          })
-        ) : (
-          <div className='spinner-wrapper'>
-            Loading product list...
-            <Spinner animation='border' />
-          </div>
-        )}
+          })}
       </div>
+      {!loading ? (
+        <div className='spinner-wrapper'>
+          Loading product list...
+          <Spinner animation='border' />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
