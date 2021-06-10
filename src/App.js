@@ -27,7 +27,6 @@ const App = () => {
   };
 
   // call the api when the scroll end the page end
-  useEffect(() => {});
   window.onscroll = function () {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
