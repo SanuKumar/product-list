@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     fetchProduct();
@@ -34,11 +35,12 @@ const App = () => {
     ) {
       fetchProduct();
     }
+    console.log('scroll');
   };
 
-  console.log('offsetHeightd', document.documentElement.offsetHeight);
-  console.log('innerHeight', window.innerHeight);
-  console.log('scrollTop', document.documentElement.scrollTop);
+  // console.log('offsetHeightd', document.documentElement.offsetHeight);
+  // console.log('innerHeight', window.innerHeight);
+  // console.log('scrollTop', document.documentElement.scrollTop);
 
   return (
     <div>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Toast, Button, Spinner } from 'react-bootstrap';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ProductList = ({ productList, loading }) => {
   const [show, setShow] = useState(false);
@@ -23,14 +25,14 @@ const ProductList = ({ productList, loading }) => {
       </div>
       <div className='card-wrapper'>
         {productList &&
-          productList.map((p) => {
+          productList.map((p, i) => {
             return (
               <div
                 style={{
                   paddingBottom: '10px',
                   paddingRight: '10px',
                 }}
-                key={p.productId}
+                key={i}
               >
                 <Card className='card-div'>
                   <div>
@@ -41,7 +43,16 @@ const ProductList = ({ productList, loading }) => {
                       {p.primaryColour}
                     </span>
                   </div>
-                  <Card.Img variant='top' src={p.searchImage} alt={p.product} />
+                  {/* <Card.Img variant='top' src={p.searchImage} alt={p.product} /> */}
+                  <div>
+                    <LazyLoadImage
+                      effect='blur'
+                      alt={p.product}
+                      height='100%'
+                      src={p.searchImage} // use normal <img> attributes as props
+                      width='100%'
+                    />
+                  </div>
                   <Card.Body>
                     <Card.Title>{p.brand}</Card.Title>
                     <Card.Text>{p.product}</Card.Text>
